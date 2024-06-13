@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  # Тестовое задание Frontend junior в Mindbox
 
-Currently, two official plugins are available:
+  * Что должно быть в интерфейсе:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - Поле для ввода новой задачи
+  - Списки всех задач, невыполненных и выполненных задач (по отдельности)
 
-## Expanding the ESLint configuration
+  ## Требования к коду:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - Приложение создано с использованием TypeScript, React и React Hooks
+  - Ключевая на ваш взгляд функциональность обязательно покрыта тестами
+  - Библиотеки компонент – на ваше усмотрение
+  - Проект должен запускаться командой npm i && npm run start
+  - Проект доступен на GitHub Pages/Vercel/etc.
 
-- Configure the top-level `parserOptions` property like this:
+  ### Установка и запуск
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+  Скачайте репозиторий
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+  Установите зависимости командой
+
+  `npm i
+
+  Запустите проект командой
+
+  `npm run start
+
+  **Дополнительная информация**
+
+Демо: https://todos-tasks-alpha.vercel.app/
+
+Автор: Geroge Tompel
+
+Лицензия: MIT
