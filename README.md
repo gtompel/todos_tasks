@@ -30,6 +30,6 @@
 
 Демо: https://todos-tasks-alpha.vercel.app/
 
-Автор: Geroge Tompel
+Автор: George Tompel
 
 Лицензия: MIT
