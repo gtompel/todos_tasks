@@ -1,30 +1,14 @@
-import {
-  useState,
-  useEffect
-} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Box,
-  Button,
-  Input,
-  VStack,
-  Checkbox,
-  HStack,
-  Container,
-  Heading,
-  Center
-} from '@chakra-ui/react';
-import './App.css';
-
-type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { Box, Button, Input, VStack, Checkbox, HStack, Container, Heading, Center, Link } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Todo } from './components/Todo';
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState<string>('');
+  const [filter, setFilter] = useState<string>('all');
+
 
   useEffect(() => {
     const fetchTodos = async (): Promise<void> => {
@@ -48,11 +32,11 @@ const App = () => {
   const updateTodo = async (id: number, title: string): Promise<void> => {
     const updatedTodo = { title, completed: false };
     try {
-    await axios.put(`http://localhost:5000/todos/${id}`, updatedTodo);
-    setTodos(todos.map(todo => (todo.id === id ? { ...todo, title } : todo)));
-  } catch (error) {
-    console.error(error);
-  }
+      await axios.put(`http://localhost:5000/todos/${id}`, updatedTodo);
+      setTodos(todos.map(todo => (todo.id === id ? { ...todo, title } : todo)));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const deleteTodo = async (id: number): Promise<void> => {
@@ -70,53 +54,76 @@ const App = () => {
     }
   };
 
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'all') return true;
+    if (filter === 'completed') return todo.completed;
+    if (filter === 'active') return !todo.completed;
+    return true;
+  });
+
   return (
-    <Box>
-    <Container maxW="container.md" p={5}>
+    <Box maxW="1280px" mx="auto" py={10} px={{ base: 4, md: 8 }} >
+    <Container maxW="container.md" py={5} px={4}>
       <Center>
-        <Heading mb={5}>Simple Todo App</Heading>
+        <Heading as="h1" mb={5} textAlign="center" size="xl">
+          Список задач
+        </Heading>
       </Center>
 
-      <Input
-        value={ newTodo }
-        onChange={
-          (e) => setNewTodo(e.target.value)
-        }
-        placeholder="Add a new todo"
-      />
+      <HStack mb={5} justify="center">
+        <Input
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Добавить новую задачу"
+          maxW="300px"
+          mr={2}
+        />
+        <Button onClick={addTodo} colorScheme="teal">
+          Добавить
+        </Button>
+      </HStack>
 
-      <Center mt={2} mb={5}>
-        <Button
-          onClick={ addTodo }
-          mt={2}
-        >Add Todo</Button>
-      </Center>
+      <HStack spacing={2} mb={4} justify="center">
+        <Button onClick={() => setFilter('all')}>Все</Button>
+        <Button onClick={() => setFilter('completed')}>Завершенные</Button>
+        <Button onClick={() => setFilter('active')}>Активные</Button>
+      </HStack>
 
-      <VStack spacing={ 4 }>
-        { todos.map(todo => (
-          <HStack key={ todo.id }>
-            <Checkbox
-              isChecked={ todo.completed }
-              onChange={
-                () => toggleComplete(todo.id)
-              }
-            />
-            <Input
-              defaultValue={ todo.title }
-              onBlur={
-                (e) => updateTodo(todo.id, e.target.value)
-              }
-            />
-            <Button onClick={
-              () => deleteTodo(todo.id)
-            }>
-              Delete
+      <VStack spacing={4} align="stretch">
+        {filteredTodos.map(todo => (
+          <HStack key={todo.id} spacing={4} justify="space-between">
+            <HStack>
+              <Checkbox
+                isChecked={todo.completed}
+                onChange={() => toggleComplete(todo.id)}
+              />
+              <Input
+                defaultValue={todo.title}
+                onBlur={(e) => updateTodo(todo.id, e.target.value)}
+                readOnly={todo.completed}
+              />
+            </HStack>
+            <Button onClick={() => deleteTodo(todo.id)} colorScheme="red">
+              Удалить
             </Button>
           </HStack>
         ))}
       </VStack>
     </Container>
-    </Box>
+
+    <Container maxW="container.md" py={5} px={4}>
+      <Center>
+        <Link
+          color='teal.500'
+          href="https://github.com/gtompel/todos_tasks.git"
+          isExternal
+          fontSize="lg"
+        >
+          GitHub <ExternalLinkIcon mx="2px" />
+        </Link>
+      </Center>
+    </Container>
+  </Box>
   );
 };
 
