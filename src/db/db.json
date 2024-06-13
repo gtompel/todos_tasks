@@ -2,7 +2,7 @@
   "todos": [
     {
       "title": "Buy milk",
-      "completed": false,
+      "completed": true,
       "id": "1"
     },
     {
@@ -13,12 +13,17 @@
     {
       "id": "81bc",
       "title": "Закончилась Вода",
-      "completed": false
+      "completed": true
     },
     {
       "title": "Вино для вечеринки",
-      "completed": false,
+      "completed": true,
       "id": "f5f2"
+    },
+    {
+      "id": "3843",
+      "title": "отдохнуть",
+      "completed": true
     }
   ]
 }
