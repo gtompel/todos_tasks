@@ -28,7 +28,7 @@
 
   **Дополнительная информация**
 
-Демо: https://todos-tasks-alpha.vercel.app/
+Демо: https://todos-tasks-xi.vercel.app/
 
 Автор: George Tompel
 
