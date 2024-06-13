@@ -1,24 +1,24 @@
 {
   "todos": [
     {
-      "title": "Buy milk",
+      "title": "Купить Молока",
       "completed": false,
       "id": "1"
     },
     {
-      "title": "Buy bread",
-      "completed": false,
+      "title": "Не забыть хлеб",
+      "completed": true,
       "id": "2"
     },
     {
       "id": "81bc",
-      "title": "Buy water",
+      "title": "Закончилась Вода",
       "completed": false
     },
     {
-      "id": "f5f2",
-      "title": "Buy Chees",
-      "completed": true
+      "title": "Вино для вечеринки",
+      "completed": false,
+      "id": "f5f2"
     }
   ]
 }
